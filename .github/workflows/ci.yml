@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  starters:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Validate catalogue
+        run: node catalogue-check.mjs
+      - name: Verify shared fixtures
+        working-directory: fixtures
+        run: node --test
+      - name: Verify React public starter
+        working-directory: react-public
+        run: |
+          npm ci
+          npm run lint
+          npm test
+          npm run build
+      - name: Verify Node Express starter
+        working-directory: node-express
+        run: |
+          npm ci
+          npm run lint
+          npm test
+          npm run start:check
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify Django starter
+        working-directory: django-server
+        run: |
+          python -m pip install -r requirements.txt
+          python manage.py check
+          python manage.py test
+      - name: Scan source and builds for sensitive artifacts
+        run: node security-scan.mjs

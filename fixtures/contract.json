@@ -1,0 +1,9 @@
+{
+  "response_type": "code",
+  "grant_type": "authorization_code",
+  "pkce_method": "S256",
+  "default_scopes": ["openid"],
+  "transaction_max_age_seconds": 600,
+  "required_id_token_checks": ["algorithm", "signature", "issuer", "audience", "expiry", "nonce"],
+  "forbidden_browser_storage": ["client_secret", "access_token", "refresh_token", "id_token"]
+}

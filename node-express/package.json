@@ -1,0 +1,20 @@
+{
+  "name": "mydatum-partner-node-express",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "lint": "node --check src/app.mjs && node --check src/config.mjs && node --check src/security.mjs",
+    "test": "node --test",
+    "start": "node src/server.mjs",
+    "start:check": "node scripts/start-check.mjs"
+  },
+  "dependencies": {
+    "express": "5.2.1",
+    "express-session": "1.19.0",
+    "openid-client": "6.8.4"
+  }
+}

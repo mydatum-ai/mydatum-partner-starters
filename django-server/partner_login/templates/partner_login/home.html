@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Partner sign in</title>
+    <style>
+      body { margin: 0; background: #f4f7f5; color: #10221d; font: 16px system-ui; }
+      main { max-width: 34rem; margin: 12vh auto; padding: 2rem; border: 1px solid #cad8d2; border-radius: 1rem; background: white; }
+      a { display: inline-block; padding: .75rem 1rem; border-radius: .5rem; background: #086b55; color: white; font-weight: 700; text-decoration: none; }
+      a:focus { outline: 3px solid #52d5ad; outline-offset: 3px; }
+      .note { color: #52645e; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="note">MYDATUM PARTNER STARTER</p>
+      <h1>Sign in to the partner app</h1>
+      <p>Use your MyDatum account. The partner app receives only approved scopes after Consent.</p>
+      <p><a href="{% url 'login' %}">Sign in with MyDatum</a></p>
+      <p class="note">OAuth tokens and the client secret remain in the protected server session.</p>
+    </main>
+  </body>
+</html>

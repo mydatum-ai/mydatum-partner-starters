@@ -1,0 +1,44 @@
+name: Partner starter release
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["partner-starters-v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Validate catalogue and source integrity
+        run: node catalogue-check.mjs
+      - name: Create immutable source archives
+        run: |
+          mkdir -p partner-starter-artifacts
+          for starter in react-public node-express django-server; do
+            git archive --format=tar.gz --prefix="mydatum-$starter/" -o "partner-starter-artifacts/mydatum-$starter.tar.gz" "HEAD:$starter"
+          done
+          cd partner-starter-artifacts
+          sha256sum *.tar.gz > SHA256SUMS
+      - name: Scan source before publication
+        run: node security-scan.mjs
+      - name: Upload versioned starter artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: partner-starters-${{ github.ref_name }}
+          path: partner-starter-artifacts/
+          if-no-files-found: error
+          retention-days: 90
+      - name: Publish immutable tagged release
+        if: startsWith(github.ref, 'refs/tags/partner-starters-v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1 || gh release create "$GITHUB_REF_NAME" --title "MyDatum Partner starters $GITHUB_REF_NAME" --notes "Maintained Partner integration starter applications. Verify downloads with SHA256SUMS."
+          gh release upload "$GITHUB_REF_NAME" partner-starter-artifacts/* --clobber

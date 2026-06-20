@@ -7,13 +7,17 @@ Authorization Code flow and OpenID Connect.
 
 | Starter | Client type | Use when |
 | --- | --- | --- |
-| [React public client](react-public/README.md) | Public + PKCE S256 | Building a low-risk browser application without a client secret |
-| [Node.js and Express](node-express/README.md) | Confidential + PKCE S256 | Building a server application or backend-for-frontend in JavaScript |
-| [Python and Django](django-server/README.md) | Confidential + PKCE S256 | Building a Python server application with protected sessions |
+| [React public client](starters/react/README.md) | Public + PKCE S256 | Building a low-risk browser application without a client secret |
+| [Node.js and Express](starters/express/README.md) | Confidential + PKCE S256 | Building a server application or backend-for-frontend in JavaScript |
+| [Python and Django](starters/django/README.md) | Confidential + PKCE S256 | Building a Python server application with protected sessions |
 
 Each starter includes a working **Sign in with MyDatum** page, exact callback handling, maintained
 OIDC libraries, redacted failures, deterministic tests, and environment templates containing
 placeholders only.
+
+All runnable applications live under [`starters/`](starters/). Each starter is self-contained and
+uses conventional framework structure, so adopters can copy it unchanged instead of moving source
+files out of repository-specific directories. Repository-wide automation remains at the root.
 
 ## Run with Docker Compose
 

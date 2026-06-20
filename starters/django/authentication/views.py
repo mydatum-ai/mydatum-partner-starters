@@ -52,7 +52,7 @@ def health(_request):
 
 @require_GET
 def home(request):
-    return render(request, "partner_login/home.html")
+    return render(request, "authentication/home.html")
 
 
 @require_GET

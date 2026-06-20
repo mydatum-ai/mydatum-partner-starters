@@ -14,4 +14,4 @@ if len(os.environ["DJANGO_SECRET_KEY"]) < 50:
 PY
 
 python manage.py migrate --noinput
-exec python manage.py runserver 0.0.0.0:8000
+exec "$@"

@@ -23,14 +23,14 @@ jobs:
         working-directory: fixtures
         run: node --test
       - name: Verify React public starter
-        working-directory: react-public
+        working-directory: starters/react
         run: |
           npm ci
           npm run lint
           npm test
           npm run build
       - name: Verify Node Express starter
-        working-directory: node-express
+        working-directory: starters/express
         run: |
           npm ci
           npm run lint
@@ -40,7 +40,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Verify Django starter
-        working-directory: django-server
+        working-directory: starters/django
         run: |
           python -m pip install -r requirements.txt
           python manage.py check

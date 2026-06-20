@@ -39,5 +39,5 @@ npm test
 npm run start:check
 ```
 
-For protocol behavior and shared terminology, see
-[`../docs/oauth-pkce-quickstart.md`](../docs/oauth-pkce-quickstart.md).
+For protocol behavior and shared terminology, see the
+[OAuth + PKCE quickstart](https://github.com/mydatum-ai/mydatum-partner-starters/blob/main/docs/oauth-pkce-quickstart.md).

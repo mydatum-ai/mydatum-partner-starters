@@ -21,8 +21,10 @@ jobs:
       - name: Create immutable source archives
         run: |
           mkdir -p partner-starter-artifacts
-          for starter in react-public node-express django-server; do
-            git archive --format=tar.gz --prefix="mydatum-$starter/" -o "partner-starter-artifacts/mydatum-$starter.tar.gz" "HEAD:$starter"
+          for entry in "react-public:starters/react" "node-express:starters/express" "django-server:starters/django"; do
+            starter="${entry%%:*}"
+            directory="${entry#*:}"
+            git archive --format=tar.gz --prefix="mydatum-$starter/" -o "partner-starter-artifacts/mydatum-$starter.tar.gz" "HEAD:$directory"
           done
           cd partner-starter-artifacts
           sha256sum *.tar.gz > SHA256SUMS

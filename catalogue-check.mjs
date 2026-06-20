@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
-import { basename, join, relative, resolve, sep } from "node:path";
+import { join, relative, resolve, sep } from "node:path";
 
 const examplesRoot = resolve(import.meta.dirname);
 const cataloguePath = resolve(examplesRoot, "catalogue.json");
@@ -37,7 +37,7 @@ for (const item of catalogue) {
   assert.ok(["public", "confidential"].includes(item.clientType));
   assert.ok(["supported", "deprecated", "withdrawn"].includes(item.status));
   assert.equal(item.callbackPath, "/auth/callback");
-  assert.equal(basename(item.sourceDirectory), item.sourceDirectory, "Source directory must not traverse paths");
+  assert.match(item.sourceDirectory, /^starters\/[a-z0-9-]+$/, "Source directory must be a starter path");
   assert.match(item.sourceUrl, /^https:\/\/github\.com\/mydatum-ai\/mydatum-partner-starters\//);
   assert.match(item.documentationUrl, /^https:\/\/github\.com\/mydatum-ai\/mydatum-partner-starters\//);
   assert.equal(item.releaseUrl, "https://github.com/mydatum-ai/mydatum-partner-starters/releases");

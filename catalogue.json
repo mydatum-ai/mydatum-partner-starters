@@ -15,10 +15,10 @@
     "commands": ["npm ci", "npm test", "npm run dev"],
     "capabilities": ["Sign in with MyDatum page", "Authorization Code + PKCE S256", "OIDC discovery and ID-token validation", "In-memory token storage"],
     "limitations": ["Reloading clears the login", "Browser XSS can act with the page authority", "Not recommended for high-risk long-lived sessions"],
-    "sourceUrl": "https://github.com/mydatum-ai/mydatum-partner-starters/tree/main/react-public",
-    "documentationUrl": "https://github.com/mydatum-ai/mydatum-partner-starters/blob/main/react-public/README.md",
+    "sourceUrl": "https://github.com/mydatum-ai/mydatum-partner-starters/tree/main/starters/react",
+    "documentationUrl": "https://github.com/mydatum-ai/mydatum-partner-starters/blob/main/starters/react/README.md",
     "releaseUrl": "https://github.com/mydatum-ai/mydatum-partner-starters/releases",
-    "sourceDirectory": "react-public",
+    "sourceDirectory": "starters/react",
     "contract": ">=0.1.2",
     "releasedAt": "2026-06-20",
     "checksumSha256": "d29eea6b6a94442a64f020ab8910b3e26135c15e9448bbef46af88646def054e"
@@ -39,13 +39,13 @@
     "commands": ["npm ci", "npm test", "npm start"],
     "capabilities": ["Sign in with MyDatum route", "Authorization Code + PKCE S256", "Server-held tokens and client secret", "Secure application session cookie"],
     "limitations": ["The included memory session store is development-only", "Local logout does not end the upstream MyDatum session"],
-    "sourceUrl": "https://github.com/mydatum-ai/mydatum-partner-starters/tree/main/node-express",
-    "documentationUrl": "https://github.com/mydatum-ai/mydatum-partner-starters/blob/main/node-express/README.md",
+    "sourceUrl": "https://github.com/mydatum-ai/mydatum-partner-starters/tree/main/starters/express",
+    "documentationUrl": "https://github.com/mydatum-ai/mydatum-partner-starters/blob/main/starters/express/README.md",
     "releaseUrl": "https://github.com/mydatum-ai/mydatum-partner-starters/releases",
-    "sourceDirectory": "node-express",
+    "sourceDirectory": "starters/express",
     "contract": ">=0.1.2",
     "releasedAt": "2026-06-20",
-    "checksumSha256": "ecd119a7f7ae9abbc0c3c45f074d36e8ab51e6d63436d7b8137afd75ce252030"
+    "checksumSha256": "3b365647526f3246f3375a7a49ab770658d21c77f8f5b5fad3f83566bea615e2"
   },
   {
     "id": "django-server",
@@ -63,12 +63,12 @@
     "commands": ["python -m pip install -r requirements.txt", "python manage.py migrate", "python manage.py runserver 127.0.0.1:8000"],
     "capabilities": ["Sign in with MyDatum route", "Authorization Code + PKCE S256", "Server-held tokens and client secret", "Rotated Django session"],
     "limitations": ["SQLite is for local development only", "Local logout does not end the upstream MyDatum session"],
-    "sourceUrl": "https://github.com/mydatum-ai/mydatum-partner-starters/tree/main/django-server",
-    "documentationUrl": "https://github.com/mydatum-ai/mydatum-partner-starters/blob/main/django-server/README.md",
+    "sourceUrl": "https://github.com/mydatum-ai/mydatum-partner-starters/tree/main/starters/django",
+    "documentationUrl": "https://github.com/mydatum-ai/mydatum-partner-starters/blob/main/starters/django/README.md",
     "releaseUrl": "https://github.com/mydatum-ai/mydatum-partner-starters/releases",
-    "sourceDirectory": "django-server",
+    "sourceDirectory": "starters/django",
     "contract": ">=0.1.2",
     "releasedAt": "2026-06-20",
-    "checksumSha256": "9a060eb39aaf7bc0331ede4682a352a55ac3fbb8dd363a4f7aec40202b44a39a"
+    "checksumSha256": "db5241a96ba3a5a1c2f6706604081b623624a05167c7b8613a8145b857acfbb7"
   }
 ]

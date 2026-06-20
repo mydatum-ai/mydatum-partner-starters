@@ -5,13 +5,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "tests-only-insecure-key-change-before-running")
 DEBUG = os.environ.get("DJANGO_DEBUG", "false").lower() == "true"
 ALLOWED_HOSTS = ["127.0.0.1", "localhost", "testserver"]
-ROOT_URLCONF = "partner_example.urls"
-WSGI_APPLICATION = "partner_example.wsgi.application"
+ROOT_URLCONF = "config.urls"
+WSGI_APPLICATION = "config.wsgi.application"
 INSTALLED_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
-    "partner_login",
+    "authentication",
 ]
 TEMPLATES = [
     {

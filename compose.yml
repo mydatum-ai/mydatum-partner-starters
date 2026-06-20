@@ -4,7 +4,7 @@ services:
   react:
     profiles: [react]
     build:
-      context: ./react-public
+      context: ./starters/react
       args:
         VITE_MYDATUM_ISSUER: ${MYDATUM_ISSUER:-https://auth.staging.mydatum.ai}
         VITE_MYDATUM_CLIENT_ID: ${REACT_MYDATUM_CLIENT_ID:-replace-with-public-client-id}
@@ -21,7 +21,7 @@ services:
 
   node:
     profiles: [node]
-    build: ./node-express
+    build: ./starters/express
     environment:
       MYDATUM_ISSUER: ${MYDATUM_ISSUER:-https://auth.staging.mydatum.ai}
       MYDATUM_CLIENT_ID: ${NODE_MYDATUM_CLIENT_ID:-replace-with-partner-client-id}
@@ -42,7 +42,7 @@ services:
 
   django:
     profiles: [django]
-    build: ./django-server
+    build: ./starters/django
     environment:
       MYDATUM_ISSUER: ${MYDATUM_ISSUER:-https://auth.staging.mydatum.ai}
       MYDATUM_CLIENT_ID: ${DJANGO_MYDATUM_CLIENT_ID:-replace-with-partner-client-id}

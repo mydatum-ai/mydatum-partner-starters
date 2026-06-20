@@ -4,9 +4,9 @@ import { extname, join, relative, resolve } from "node:path";
 
 const root = resolve(import.meta.dirname);
 const scanRoots = [
-  resolve(import.meta.dirname, "node-express/src"),
-  resolve(import.meta.dirname, "react-public/src"),
-  resolve(import.meta.dirname, "django-server/partner_login"),
+  resolve(import.meta.dirname, "starters/express/src"),
+  resolve(import.meta.dirname, "starters/react/src"),
+  resolve(import.meta.dirname, "starters/django/authentication"),
 ].filter(existsSync);
 const allowedExtensions = new Set([".js", ".mjs", ".ts", ".tsx", ".py", ".html"]);
 const forbidden = [
@@ -28,7 +28,7 @@ for (const path of scanRoots.flatMap(files).filter((path) => allowedExtensions.h
   for (const pattern of forbidden) assert.doesNotMatch(contents, pattern, `${relative(root, path)} matched ${pattern}`);
 }
 
-const publicBrowserSource = readFileSync(resolve(import.meta.dirname, "react-public/src/auth.ts"), "utf8");
+const publicBrowserSource = readFileSync(resolve(import.meta.dirname, "starters/react/src/auth.ts"), "utf8");
 assert.doesNotMatch(publicBrowserSource, /localStorage|client_secret|CLIENT_SECRET/);
 const catalogue = readFileSync(resolve(root, "catalogue.json"), "utf8");
 assert.doesNotMatch(catalogue, /(?:access|refresh|id)_token\s*[=:]\s*["'][A-Za-z0-9_-]{24,}["']/i);

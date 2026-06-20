@@ -21,9 +21,9 @@ type that matches the code you intend to run:
 
 | Your project | Partner client | Starter |
 | --- | --- | --- |
-| React or another browser-only application | Public client with PKCE; no secret | [`react-public`](../react-public/) |
-| Node.js server or backend-for-frontend | Confidential client with PKCE | [`node-express`](../node-express/) |
-| Python server application | Confidential client with PKCE | [`django-server`](../django-server/) |
+| React or another browser-only application | Public client with PKCE; no secret | [`starters/react`](../starters/react/) |
+| Node.js server or backend-for-frontend | Confidential client with PKCE | [`starters/express`](../starters/express/) |
+| Python server application | Confidential client with PKCE | [`starters/django`](../starters/django/) |
 
 Add the exact local callback used by your project. Scheme, host, port, path, and trailing slash must
 match exactly. For example:
@@ -54,12 +54,13 @@ Clone this repository and copy only the starter matching your client type into y
 
 ```sh
 git clone --depth 1 https://github.com/mydatum-ai/mydatum-partner-starters.git
-cp -R mydatum-partner-starters/react-public my-partner-app
+cp -R mydatum-partner-starters/starters/react my-partner-app
 cd my-partner-app
 git init
 ```
 
-Replace `react-public` with `node-express` or `django-server` when appropriate. When distributing a
+Replace `react` with `express` or `django` when appropriate. Each directory is a self-contained
+runnable application and does not depend on the parent repository layout. When distributing a
 derived starter, retain the Apache-2.0 license and applicable notice from this repository. Do not copy
 the original repository's `.git` directory into your application repository.
 

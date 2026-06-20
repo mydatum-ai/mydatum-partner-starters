@@ -1,5 +1,5 @@
 from django.urls import path
-from partner_login import views
+from authentication import views
 
 urlpatterns = [
     path("", views.home, name="home"),

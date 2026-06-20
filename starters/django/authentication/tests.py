@@ -80,7 +80,7 @@ class PartnerLoginTests(TestCase):
             external_identity_key(ISSUER, "other-subject"),
         )
 
-    @patch("partner_login.views.provider")
+    @patch("authentication.views.provider")
     def test_login_requests_nonce_and_pkce_s256(self, provider_mock):
         client = Mock()
         client.authorize_redirect.return_value = HttpResponseRedirect(
@@ -95,7 +95,7 @@ class PartnerLoginTests(TestCase):
         self.assertTrue(arguments["code_challenge"])
         self.assertTrue(arguments["nonce"])
 
-    @patch("partner_login.views.provider")
+    @patch("authentication.views.provider")
     def test_signature_failure_is_redacted(self, provider_mock):
         session = self.client.session
         session["pkce_verifier"] = "verifier"
@@ -111,7 +111,7 @@ class PartnerLoginTests(TestCase):
         self.assertEqual(response.json(), {"error": "authentication_failed"})
         self.assertNotIn("token-and-secret-details", response.content.decode())
 
-    @patch("partner_login.views.provider")
+    @patch("authentication.views.provider")
     def test_callback_rotates_session_and_keeps_tokens_server_side(self, provider_mock):
         session = self.client.session
         session["pkce_verifier"] = "verifier"

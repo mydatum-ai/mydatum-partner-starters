@@ -17,13 +17,11 @@ placeholders only.
 
 ## Start here
 
-1. Register and provision an application in the MyDatum Partner console.
-2. Choose a starter matching the application's public or confidential client type.
-3. Follow its README and copy `.env.example` to a local `.env` that is excluded from Git.
-4. Register the exact callback used by the starter. `localhost` and `127.0.0.1` are different hosts.
-5. Start a fresh sign-in and verify the callback, token validation, account mapping, and local session.
+Follow the [end-to-end Partner getting-started guide](docs/getting-started.md). It covers organisation
+verification, sandbox registration and approval, choosing and copying a starter, environment
+configuration, local sign-in testing, and promotion to a separate production client.
 
-Read the [OAuth + PKCE quickstart](docs/oauth-pkce-quickstart.md),
+Then read the [OAuth + PKCE quickstart](docs/oauth-pkce-quickstart.md),
 [integration contract](docs/integration-contract.md), [error guidance](docs/error-guidance.md), and
 [production checklist](docs/production-checklist.md) before launch.
 

@@ -47,3 +47,15 @@ jobs:
           python manage.py test
       - name: Scan source and builds for sensitive artifacts
         run: node security-scan.mjs
+      - name: Validate Compose configuration
+        env:
+          REACT_MYDATUM_CLIENT_ID: ci-public-client
+          NODE_MYDATUM_CLIENT_ID: ci-node-client
+          NODE_MYDATUM_CLIENT_SECRET: ci-node-client-secret
+          NODE_SESSION_SECRET: ci-node-session-secret-that-is-at-least-32-characters
+          DJANGO_MYDATUM_CLIENT_ID: ci-django-client
+          DJANGO_MYDATUM_CLIENT_SECRET: ci-django-client-secret
+          DJANGO_SECRET_KEY: ci-django-secret-key-that-is-definitely-at-least-fifty-characters-long
+        run: |
+          docker compose config --quiet
+          node scripts/compose-smoke.mjs react node django

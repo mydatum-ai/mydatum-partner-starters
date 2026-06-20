@@ -21,7 +21,7 @@
     "sourceDirectory": "react-public",
     "contract": ">=0.1.2",
     "releasedAt": "2026-06-20",
-    "checksumSha256": "8669213f11134362efcbd15baf066e0d6d0750cdb9f213dd8f2b373671623c3e"
+    "checksumSha256": "d29eea6b6a94442a64f020ab8910b3e26135c15e9448bbef46af88646def054e"
   },
   {
     "id": "node-express",
@@ -45,7 +45,7 @@
     "sourceDirectory": "node-express",
     "contract": ">=0.1.2",
     "releasedAt": "2026-06-20",
-    "checksumSha256": "2dd7bd1ba2bc3458e6ba983f035a63093c64e99e27b89baafe11c0fd96052aca"
+    "checksumSha256": "ecd119a7f7ae9abbc0c3c45f074d36e8ab51e6d63436d7b8137afd75ce252030"
   },
   {
     "id": "django-server",
@@ -69,6 +69,6 @@
     "sourceDirectory": "django-server",
     "contract": ">=0.1.2",
     "releasedAt": "2026-06-20",
-    "checksumSha256": "6277321be3869606798e58665c3b2aee559959e0c4d4ae9a56a50ad7518f9e18"
+    "checksumSha256": "9a060eb39aaf7bc0331ede4682a352a55ac3fbb8dd363a4f7aec40202b44a39a"
   }
 ]

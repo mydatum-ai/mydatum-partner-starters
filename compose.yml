@@ -1,0 +1,67 @@
+name: mydatum-partner-starters
+
+services:
+  react:
+    profiles: [react]
+    build:
+      context: ./react-public
+      args:
+        VITE_MYDATUM_ISSUER: ${MYDATUM_ISSUER:-https://auth.staging.mydatum.ai}
+        VITE_MYDATUM_CLIENT_ID: ${REACT_MYDATUM_CLIENT_ID:-replace-with-public-client-id}
+        VITE_MYDATUM_REDIRECT_URI: ${REACT_MYDATUM_REDIRECT_URI:-http://127.0.0.1:4173/auth/callback}
+        VITE_MYDATUM_SCOPES: ${REACT_MYDATUM_SCOPES:-openid}
+    ports:
+      - "127.0.0.1:${REACT_PORT:-4173}:80"
+    healthcheck:
+      test: [CMD, wget, -q, --spider, http://127.0.0.1/]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 5s
+
+  node:
+    profiles: [node]
+    build: ./node-express
+    environment:
+      MYDATUM_ISSUER: ${MYDATUM_ISSUER:-https://auth.staging.mydatum.ai}
+      MYDATUM_CLIENT_ID: ${NODE_MYDATUM_CLIENT_ID:-replace-with-partner-client-id}
+      MYDATUM_CLIENT_SECRET: ${NODE_MYDATUM_CLIENT_SECRET:-replace-with-partner-client-secret}
+      MYDATUM_REDIRECT_URI: ${NODE_MYDATUM_REDIRECT_URI:-http://127.0.0.1:3000/auth/callback}
+      MYDATUM_SCOPES: ${NODE_MYDATUM_SCOPES:-openid}
+      SESSION_SECRET: ${NODE_SESSION_SECRET:-replace-with-at-least-32-random-characters}
+      HOST: 0.0.0.0
+      PORT: 3000
+    ports:
+      - "127.0.0.1:${NODE_PORT:-3000}:3000"
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:3000/').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 5s
+
+  django:
+    profiles: [django]
+    build: ./django-server
+    environment:
+      MYDATUM_ISSUER: ${MYDATUM_ISSUER:-https://auth.staging.mydatum.ai}
+      MYDATUM_CLIENT_ID: ${DJANGO_MYDATUM_CLIENT_ID:-replace-with-partner-client-id}
+      MYDATUM_CLIENT_SECRET: ${DJANGO_MYDATUM_CLIENT_SECRET:-replace-with-partner-client-secret}
+      MYDATUM_REDIRECT_URI: ${DJANGO_MYDATUM_REDIRECT_URI:-http://127.0.0.1:8000/auth/callback}
+      MYDATUM_SCOPES: ${DJANGO_MYDATUM_SCOPES:-openid}
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:-replace-with-at-least-50-random-characters}
+      DJANGO_DEBUG: ${DJANGO_DEBUG:-true}
+      DJANGO_DB_PATH: /data/db.sqlite3
+    volumes:
+      - django-data:/data
+    ports:
+      - "127.0.0.1:${DJANGO_PORT:-8000}:8000"
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/', timeout=2)"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 10s
+
+volumes:
+  django-data:

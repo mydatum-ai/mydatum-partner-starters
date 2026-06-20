@@ -15,6 +15,45 @@ Each starter includes a working **Sign in with MyDatum** page, exact callback ha
 OIDC libraries, redacted failures, deterministic tests, and environment templates containing
 placeholders only.
 
+## Run with Docker Compose
+
+Docker Desktop (or Docker Engine with Compose v2) runs the applications without local language
+runtimes. If Node.js 20 or newer is available, create the root environment file and random local
+session secrets with:
+
+```sh
+node scripts/init-env.mjs
+```
+
+Alternatively, copy `.env.example` to `.env` and replace both session-secret placeholders manually.
+Add the provisioned client ID and, for a confidential client, client secret for the starter you want
+to run. The containers deliberately reject unchanged credential placeholders.
+
+Start one profile:
+
+```sh
+docker compose --profile react up --build -d
+docker compose --profile node up --build -d
+docker compose --profile django up --build -d
+```
+
+Open React at `http://127.0.0.1:4173`, Node at `http://127.0.0.1:3000`, or Django at
+`http://127.0.0.1:8000`. Container startup proves the local application is healthy; a complete sign-in
+also requires a provisioned MyDatum client whose registered callback exactly matches `.env`.
+If a port is occupied, change its `*_PORT` value and its redirect URI in `.env`, then register that
+exact redirect with MyDatum.
+
+Use `docker compose --profile <name> logs -f` for logs and `docker compose --profile <name> down` to
+stop it. Django migrations run automatically and its local SQLite data persists in a named volume;
+add `--volumes` to `down` only when you intend to delete that data.
+
+To build, start, probe, and stop one or more profiles in a single check, run:
+
+```sh
+node scripts/compose-smoke.mjs node
+node scripts/compose-smoke.mjs react node django
+```
+
 ## Start here
 
 Follow the [end-to-end Partner getting-started guide](docs/getting-started.md). It covers organisation

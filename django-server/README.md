@@ -25,6 +25,10 @@ session. POST `/unlink` to remove the sample's local link and session; a real ap
 delete its persisted external-identity row. MyDatum currently advertises no end-session or revocation
 endpoint, so these operations do not terminate the upstream MyDatum session.
 
+From the repository root, `docker compose --profile django up --build -d` loads the root `.env`, runs
+migrations, and starts Django automatically. SQLite data is retained in the `django-data` volume. The
+note above about exporting values applies only to the native Python workflow.
+
 The local identity key combines the exact issuer and opaque pairwise `sub`. Email is optional and
 mutable; never use it as the account key, infer a MyDatum database ID, or correlate subjects between
 clients. For production, set `DJANGO_DEBUG=false`, serve HTTPS, use a durable protected session store,

@@ -15,6 +15,9 @@ client secret stay in the server-side session store.
 4. Run `npm ci`, `npm test`, then `npm start`.
 5. Open `http://127.0.0.1:3000/` and select **Sign in with MyDatum**.
 
+From the repository root, `docker compose --profile node up --build -d` loads the root `.env`
+automatically. The note above about exporting values applies only to the native `npm start` workflow.
+
 If Partner generated a different loopback port, set `PORT` and `MYDATUM_REDIRECT_URI` to that
 exact registered value. `localhost` and `127.0.0.1` are different OAuth redirect hosts.
 

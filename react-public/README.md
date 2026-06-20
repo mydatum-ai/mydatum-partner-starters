@@ -14,6 +14,10 @@ npm run build
 npm run dev
 ```
 
+From the repository root, the equivalent container workflow uses the root `.env` variable names and
+`docker compose --profile react up --build -d`. React configuration is embedded during the image
+build, so rebuild after changing it.
+
 Register `http://127.0.0.1:4173/auth/callback` exactly (or change both registration and config).
 Use `openid` alone for private sign-in; add `email` only when required and handle it being absent.
 

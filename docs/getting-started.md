@@ -94,7 +94,9 @@ source, mobile bundles, committed files, screenshots, logs, or support messages.
 
 ## 6. Run and test the complete login
 
-Install dependencies and start the selected starter using its README. Open its landing page and select
+Install dependencies and start the selected starter using its README, or use the root Docker Compose
+workflow documented in the repository README. Compose can make the application start consistently,
+but it cannot provision OAuth credentials or register callbacks. Open its landing page and select
 **Sign in with MyDatum**. A successful test must prove the complete partner-side flow:
 
 1. The application creates one-time state, nonce, and PKCE values.

@@ -1,6 +1,9 @@
 function required(env, name) {
   const value = env[name]?.trim();
   if (!value) throw new Error(`Missing required setting: ${name}`);
+  if (value.startsWith("replace-with-")) {
+    throw new Error(`Invalid ${name}: replace the placeholder before starting`);
+  }
   return value;
 }
 
@@ -24,6 +27,7 @@ export function loadConfig(env = process.env) {
     scopes,
     sessionSecret,
     port: Number(env.PORT || 3000),
+    host: env.HOST || "127.0.0.1",
     production: env.NODE_ENV === "production",
   });
 }

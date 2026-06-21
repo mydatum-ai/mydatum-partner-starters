@@ -6,7 +6,7 @@ services:
     build:
       context: ./starters/react
       args:
-        VITE_MYDATUM_ISSUER: ${MYDATUM_ISSUER:-https://auth.staging.mydatum.ai}
+        VITE_MYDATUM_ISSUER: ${MYDATUM_ISSUER:-https://auth.mydatum.ai}
         VITE_MYDATUM_CLIENT_ID: ${REACT_MYDATUM_CLIENT_ID:-replace-with-public-client-id}
         VITE_MYDATUM_REDIRECT_URI: ${REACT_MYDATUM_REDIRECT_URI:-http://127.0.0.1:4173/auth/callback}
         VITE_MYDATUM_SCOPES: ${REACT_MYDATUM_SCOPES:-openid}
@@ -23,7 +23,7 @@ services:
     profiles: [node]
     build: ./starters/express
     environment:
-      MYDATUM_ISSUER: ${MYDATUM_ISSUER:-https://auth.staging.mydatum.ai}
+      MYDATUM_ISSUER: ${MYDATUM_ISSUER:-https://auth.mydatum.ai}
       MYDATUM_CLIENT_ID: ${NODE_MYDATUM_CLIENT_ID:-replace-with-partner-client-id}
       MYDATUM_CLIENT_SECRET: ${NODE_MYDATUM_CLIENT_SECRET:-replace-with-partner-client-secret}
       MYDATUM_REDIRECT_URI: ${NODE_MYDATUM_REDIRECT_URI:-http://127.0.0.1:3000/auth/callback}
@@ -44,7 +44,7 @@ services:
     profiles: [django]
     build: ./starters/django
     environment:
-      MYDATUM_ISSUER: ${MYDATUM_ISSUER:-https://auth.staging.mydatum.ai}
+      MYDATUM_ISSUER: ${MYDATUM_ISSUER:-https://auth.mydatum.ai}
       MYDATUM_CLIENT_ID: ${DJANGO_MYDATUM_CLIENT_ID:-replace-with-partner-client-id}
       MYDATUM_CLIENT_SECRET: ${DJANGO_MYDATUM_CLIENT_SECRET:-replace-with-partner-client-secret}
       MYDATUM_REDIRECT_URI: ${DJANGO_MYDATUM_REDIRECT_URI:-http://127.0.0.1:8000/auth/callback}

@@ -6,7 +6,7 @@ redirect URI set, secret, session key, or evidence record in production.
 ## Registration and configuration
 
 - The organisation and application are reviewed, provisioned, and enabled.
-- The issuer exactly matches the environment; staging is `https://auth.staging.mydatum.ai`.
+- The issuer exactly matches the environment: production is `https://auth.mydatum.ai`; staging is `https://auth.staging.mydatum.ai`.
 - Endpoints come from `/.well-known/openid-configuration` and the returned issuer matches exactly.
 - Every redirect is registered and matched exactly. Production web callbacks use HTTPS.
 - Every public web browser origin is reviewed, registered exactly, and uses HTTPS in production.

@@ -8,7 +8,7 @@ This is the implementation contract for external Partner applications. Backend s
 | --- | --- | --- |
 | Local | `OIDC_ISSUER` in local configuration | Use only local client IDs and redirects. |
 | Staging | `https://auth.staging.mydatum.ai` | Use dedicated staging clients and HTTPS redirects. |
-| Production | Production `OIDC_ISSUER` | Never reuse staging client IDs, redirects, or secrets. |
+| Production | `https://auth.mydatum.ai` | Never reuse staging client IDs, redirects, or secrets. |
 
 Resolve endpoints from `${issuer}/.well-known/openid-configuration`. Do not hard-code authorize, token, UserInfo, or JWKS hosts independently.
 

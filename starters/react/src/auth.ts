@@ -1,5 +1,7 @@
 import { InMemoryWebStorage, UserManager, WebStorageStateStore, type User } from "oidc-client-ts";
 
+const callbackCompletions = new WeakMap<UserManager, Promise<User>>();
+
 export type PublicConfig = Readonly<{
   authority: string;
   clientId: string;
@@ -36,6 +38,15 @@ export function createUserManager(config: PublicConfig): UserManager {
     userStore: new WebStorageStateStore({ store: new InMemoryWebStorage() }),
     stateStore: new WebStorageStateStore({ store: window.sessionStorage, prefix: "mydatum.tx." }),
   });
+}
+
+export function completeSigninOnce(manager: UserManager): Promise<User> {
+  const existing = callbackCompletions.get(manager);
+  if (existing) return existing;
+
+  const completion = manager.signinRedirectCallback();
+  callbackCompletions.set(manager, completion);
+  return completion;
 }
 
 export function safeUser(user: User) {

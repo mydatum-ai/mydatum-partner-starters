@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { User } from "oidc-client-ts";
 
-import { clearCallbackUrl, createUserManager, readPublicConfig, safeError, safeUser, type PublicEnv } from "./auth";
+import { clearCallbackUrl, completeSigninOnce, createUserManager, readPublicConfig, safeError, safeUser, type PublicEnv } from "./auth";
 import "./styles.css";
 
 export default function App() {
@@ -13,7 +13,7 @@ export default function App() {
   useEffect(() => {
     if (window.location.pathname !== "/auth/callback") return;
     let active = true;
-    manager.signinRedirectCallback()
+    completeSigninOnce(manager)
       .then((result) => { if (active) setUser(result); })
       .catch((reason: unknown) => { if (active) setError(safeError(reason)); })
       .finally(() => {

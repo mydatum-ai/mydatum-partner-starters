@@ -1,5 +1,6 @@
-import { describe, expect, it } from "vitest";
-import { readPublicConfig, safeError } from "./auth";
+import { describe, expect, it, vi } from "vitest";
+import type { User, UserManager } from "oidc-client-ts";
+import { completeSigninOnce, readPublicConfig, safeError } from "./auth";
 
 describe("public client configuration", () => {
   it("accepts issuer client redirect and openid scope without a secret", () => {
@@ -27,4 +28,19 @@ describe("public client configuration", () => {
     expect(safeError(new Error("token secret"))).not.toContain("secret");
   });
 
+});
+
+describe("callback processing", () => {
+  it("processes the one-time callback once when React StrictMode re-runs effects", async () => {
+    const user = { profile: { sub: "subject" } } as User;
+    const signinRedirectCallback = vi.fn().mockResolvedValue(user);
+    const manager = { signinRedirectCallback } as unknown as UserManager;
+
+    const first = completeSigninOnce(manager);
+    const second = completeSigninOnce(manager);
+
+    expect(first).toBe(second);
+    await expect(second).resolves.toBe(user);
+    expect(signinRedirectCallback).toHaveBeenCalledOnce();
+  });
 });

@@ -28,6 +28,12 @@ describe("public client configuration", () => {
     expect(safeError(new Error("token secret"))).not.toContain("secret");
   });
 
+  it("reports safe callback failure categories", () => {
+    expect(safeError(new TypeError("Failed to fetch"))).toContain("OIDC-NETWORK");
+    expect(safeError(new Error("No matching state found in storage"))).toContain("OIDC-STATE");
+    expect(safeError({ error: "invalid_grant", error_description: "sensitive" })).toContain("OIDC-TOKEN");
+  });
+
 });
 
 describe("callback processing", () => {

@@ -62,7 +62,27 @@ export function clearCallbackUrl() {
 }
 
 export function safeError(error: unknown): string {
-  const value = error as { error?: string };
+  const value = error as { error?: string; message?: string };
   if (value?.error === "access_denied") return "Sign-in was cancelled.";
-  return "Sign-in could not be completed. Please try again.";
+  if (value?.error === "invalid_grant") return "Sign-in response was rejected or expired. Please try again. (OIDC-TOKEN)";
+  if (value?.error === "invalid_client") return "This application registration was rejected. (OIDC-CLIENT)";
+  if (value?.error === "invalid_scope") return "The requested sign-in permissions were rejected. (OIDC-SCOPE)";
+
+  const message = typeof value?.message === "string" ? value.message.toLowerCase() : "";
+  if (message.includes("no matching state") || message.includes("no state in response")) {
+    return "The sign-in transaction was not found in this browser tab. Please try again. (OIDC-STATE)";
+  }
+  if (message.includes("state does not match")) {
+    return "The sign-in response did not match this browser transaction. Please try again. (OIDC-STATE)";
+  }
+  if (message.includes("nonce")) {
+    return "The sign-in response failed replay protection. Please try again. (OIDC-NONCE)";
+  }
+  if (message.includes("failed to fetch") || message.includes("network") || message.includes("load failed")) {
+    return "The browser could not reach the MyDatum token endpoint. (OIDC-NETWORK)";
+  }
+  if (message.includes("content-type") || message.includes("json")) {
+    return "MyDatum returned an invalid token response. (OIDC-RESPONSE)";
+  }
+  return "Sign-in could not be completed. Please try again. (OIDC-UNKNOWN)";
 }

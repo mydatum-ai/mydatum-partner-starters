@@ -29,6 +29,11 @@ sequenceDiagram
 
 Fetch `${MYDATUM_ISSUER}/.well-known/openid-configuration` on the trusted server or through a maintained OIDC library. Require the returned issuer to exactly equal configuration. Use its authorization, token, UserInfo, and JWKS endpoints.
 
+Public browser clients must have their exact browser origin reviewed and registered in Partner.
+MyDatum returns non-credentialed CORS headers on discovery, JWKS, token, and UserInfo only for an
+enabled origin. The authorization endpoint is reached through browser navigation and does not require
+CORS. Confidential server clients perform these requests server-side.
+
 ## 2. Create a transaction
 
 Generate state, nonce, and a 43-128 character PKCE verifier with a cryptographically secure random source. Create the S256 challenge. Store the transaction for no more than ten minutes and mark it single-use.

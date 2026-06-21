@@ -25,7 +25,13 @@ export default function App() {
 
   async function login() {
     setError("");
-    await manager.signinRedirect({ extraQueryParams: { prompt: "login" } });
+    setBusy(true);
+    try {
+      await manager.signinRedirect({ extraQueryParams: { prompt: "login" } });
+    } catch (reason: unknown) {
+      setError(safeError(reason));
+      setBusy(false);
+    }
   }
 
   async function logout() {
@@ -49,7 +55,7 @@ export default function App() {
             <button type="button" onClick={logout}>Sign out locally</button>
           </div>
         ) : (
-          <button type="button" onClick={login}>Sign in with MyDatum</button>
+          <button type="button" onClick={login} disabled={busy}>{busy ? "Starting sign-in…" : "Sign in with MyDatum"}</button>
         )}
         <p className="note">For financial, health, administrative, or long-lived sessions, use the backend-for-frontend pattern.</p>
       </section>

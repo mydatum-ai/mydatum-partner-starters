@@ -22,6 +22,8 @@ jobs:
       - name: Verify shared fixtures
         working-directory: fixtures
         run: node --test
+      - name: Verify browser CORS diagnostic
+        run: node --test scripts/verify-oidc-cors.test.mjs
       - name: Verify React public starter
         working-directory: starters/react
         run: |

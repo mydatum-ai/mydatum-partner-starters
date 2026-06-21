@@ -26,4 +26,5 @@ describe("public client configuration", () => {
     expect(safeError({ error: "access_denied", error_description: "sensitive" })).toBe("Sign-in was cancelled.");
     expect(safeError(new Error("token secret"))).not.toContain("secret");
   });
+
 });

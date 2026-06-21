@@ -9,6 +9,7 @@ redirect URI set, secret, session key, or evidence record in production.
 - The issuer exactly matches the environment; staging is `https://auth.staging.mydatum.ai`.
 - Endpoints come from `/.well-known/openid-configuration` and the returned issuer matches exactly.
 - Every redirect is registered and matched exactly. Production web callbacks use HTTPS.
+- Every public web browser origin is reviewed, registered exactly, and uses HTTPS in production.
 - Public clients have no secret. Confidential secrets exist only in a server secret manager.
 - Only required, approved scopes are requested; `openid` is the least-privilege sign-in baseline.
 - The selected starter version and catalogue checksum are recorded and remain supported.

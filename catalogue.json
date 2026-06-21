@@ -11,9 +11,9 @@
     "callbackPath": "/auth/callback",
     "defaultPort": 4173,
     "loginPath": "/",
-    "prerequisites": ["Node.js 20.19 or newer", "A provisioned public sandbox client"],
-    "commands": ["npm ci", "npm test", "npm run dev"],
-    "capabilities": ["Sign in with MyDatum page", "Authorization Code + PKCE S256", "OIDC discovery and ID-token validation", "In-memory token storage"],
+    "prerequisites": ["Node.js 20.19 or newer", "A provisioned public sandbox client", "A reviewed exact browser origin"],
+    "commands": ["npm ci", "npm test", "npm run dev:local"],
+    "capabilities": ["Sign in with MyDatum page", "Authorization Code + PKCE S256", "OIDC discovery and ID-token validation", "Reviewed non-credentialed browser CORS", "In-memory token storage"],
     "limitations": ["Reloading clears the login", "Browser XSS can act with the page authority", "Not recommended for high-risk long-lived sessions"],
     "sourceUrl": "https://github.com/mydatum-ai/mydatum-partner-starters/tree/main/starters/react",
     "documentationUrl": "https://github.com/mydatum-ai/mydatum-partner-starters/blob/main/starters/react/README.md",
@@ -21,7 +21,7 @@
     "sourceDirectory": "starters/react",
     "contract": ">=0.1.2",
     "releasedAt": "2026-06-20",
-    "checksumSha256": "d29eea6b6a94442a64f020ab8910b3e26135c15e9448bbef46af88646def054e"
+    "checksumSha256": "4500902a281596f7467eccbc7b3f3866e4ad5f1815bebbdf7d257341b83c2185"
   },
   {
     "id": "node-express",

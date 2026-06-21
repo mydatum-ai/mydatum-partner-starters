@@ -6,6 +6,7 @@
   "engines": { "node": ">=20.19.0" },
   "scripts": {
     "dev": "vite",
+    "dev:local": "vite --host 127.0.0.1 --port 4173 --strictPort",
     "build": "tsc -b && vite build",
     "lint": "tsc -b --pretty false",
     "test": "vitest run",

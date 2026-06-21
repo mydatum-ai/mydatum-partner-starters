@@ -35,6 +35,11 @@ http://127.0.0.1:3000/auth/callback
 `localhost` and `127.0.0.1` are different OAuth hosts. Register the value your application actually
 uses; do not alternate between them.
 
+For a browser-only public client, also register the exact browser origin (scheme, host, and port,
+without a path). For the React starter this is `http://127.0.0.1:4173`. MyDatum enables
+non-credentialed CORS only for reviewed origins on provisioned web applications. Server-side Express
+and Django clients do not require browser CORS for discovery or token exchange.
+
 Submit the application for review. After a MyDatum operator approves it, an organisation owner or
 admin provisions the OAuth client. Copy the generated client ID. A public client receives no secret.
 A confidential client displays its secret once; transfer it directly to a server-side secret manager.

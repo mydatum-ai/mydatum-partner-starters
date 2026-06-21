@@ -29,6 +29,7 @@ Resolve endpoints from `${issuer}/.well-known/openid-configuration`. Do not hard
 | Subject | Public or pairwise. External Partner applications should use pairwise and treat `sub` as opaque. | `clients/models.py`, subject tests |
 | Redirects | Exact registered URI and environment policy validation | `clients/validators.py`, authorize-error tests |
 | Client authentication | Public clients use client ID + PKCE. Confidential clients authenticate at token exchange with a server-held secret. | `TokenView`, client tests |
+| Browser CORS | Provisioned public web clients receive non-credentialed CORS on discovery, JWKS, token, and UserInfo for reviewed exact origins. | Partner browser-origin registry, CORS middleware tests |
 
 ## Scope and claim matrix
 
@@ -59,6 +60,7 @@ UserInfo `sub` must equal the ID-token `sub` for the same issuer, user, and clie
 - Cryptographically random, single-use state and verifier with bounded transaction expiry.
 - Confidential secrets and OAuth tokens remain server-side.
 - Browser examples contain no secret and do not persist tokens in `localStorage`.
+- Browser origins are exact, reviewed, environment-specific, and never receive credentialed CORS.
 - ID-token validation uses a maintained library and verifies algorithm, signature, issuer, audience, expiry, and nonce.
 - Codes, tokens, secrets, verifiers, cookies, raw ID tokens, and user attributes are excluded from logs and screenshots.
 - Partner approval makes applications/scopes eligible; MyDatum Consent remains runtime data-sharing authority.

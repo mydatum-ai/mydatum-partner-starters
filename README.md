@@ -10,6 +10,7 @@ Authorization Code flow and OpenID Connect.
 | [React public client](starters/react/README.md) | Public + PKCE S256 | Building a low-risk browser application without a client secret |
 | [Node.js and Express](starters/express/README.md) | Confidential + PKCE S256 | Building a server application or backend-for-frontend in JavaScript |
 | [Python and Django](starters/django/README.md) | Confidential + PKCE S256 | Building a Python server application with protected sessions |
+| [React, TypeScript, and Django](starters/react-typescript-django/README.md) | Confidential + PKCE S256 | Building a React UI with Django-owned authentication and sessions |
 
 Each starter includes a working **Sign in with MyDatum** page, exact callback handling, maintained
 OIDC libraries, redacted failures, deterministic tests, and environment templates containing
@@ -39,10 +40,11 @@ Start one profile:
 docker compose --profile react up --build -d
 docker compose --profile node up --build -d
 docker compose --profile django up --build -d
+docker compose --profile react-django up --build -d
 ```
 
-Open React at `http://127.0.0.1:4173`, Node at `http://127.0.0.1:3000`, or Django at
-`http://127.0.0.1:8000`. Container startup proves the local application is healthy; a complete sign-in
+Open React at `http://127.0.0.1:4173`, Node at `http://127.0.0.1:3000`, Django at
+`http://127.0.0.1:8000`, or React + Django at `http://127.0.0.1:8080`. Container startup proves the local application is healthy; a complete sign-in
 also requires a provisioned MyDatum client whose registered callback exactly matches `.env`.
 If a port is occupied, change its `*_PORT` value and its redirect URI in `.env`, then register that
 exact redirect with MyDatum.
@@ -55,7 +57,7 @@ To build, start, probe, and stop one or more profiles in a single check, run:
 
 ```sh
 node scripts/compose-smoke.mjs node
-node scripts/compose-smoke.mjs react node django
+node scripts/compose-smoke.mjs react node django react-django
 ```
 
 ## Start here

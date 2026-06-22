@@ -6,10 +6,10 @@ import { fileURLToPath } from "node:url";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const keep = process.argv.includes("--keep");
 const requested = process.argv.slice(2).filter((value) => !value.startsWith("--"));
-const profiles = requested.length ? requested : ["react", "node", "django"];
-const known = new Set(["react", "node", "django"]);
+const profiles = requested.length ? requested : ["react", "node", "django", "react-django"];
+const known = new Set(["react", "node", "django", "react-django"]);
 if (profiles.some((profile) => !known.has(profile))) {
-  throw new Error("Profiles must be react, node, or django");
+  throw new Error("Profiles must be react, node, django, or react-django");
 }
 
 const profileArgs = profiles.flatMap((profile) => ["--profile", profile]);
@@ -24,6 +24,7 @@ const endpoints = {
   react: `http://127.0.0.1:${process.env.REACT_PORT || 4173}/`,
   node: `http://127.0.0.1:${process.env.NODE_PORT || 3000}/health`,
   django: `http://127.0.0.1:${process.env.DJANGO_PORT || 8000}/`,
+  "react-django": `http://127.0.0.1:${process.env.REACT_DJANGO_PORT || 8080}/health`,
 };
 
 async function waitFor(url, timeoutMs = 90_000) {

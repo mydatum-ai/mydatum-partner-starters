@@ -7,6 +7,8 @@ const scanRoots = [
   resolve(import.meta.dirname, "starters/express/src"),
   resolve(import.meta.dirname, "starters/react/src"),
   resolve(import.meta.dirname, "starters/django/authentication"),
+  resolve(import.meta.dirname, "starters/react-typescript-django/frontend/src"),
+  resolve(import.meta.dirname, "starters/react-typescript-django/backend/authentication"),
 ].filter(existsSync);
 const allowedExtensions = new Set([".js", ".mjs", ".ts", ".tsx", ".py", ".html"]);
 const forbidden = [

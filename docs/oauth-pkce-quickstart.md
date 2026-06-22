@@ -2,7 +2,7 @@
 
 Use this sequence after provisioning an application in Partner. The reusable PKCE/state fixtures live in [`fixtures`](../fixtures/).
 
-Choose a runnable, dependency-pinned reference: [Node/Express](../starters/express/README.md) for confidential JavaScript servers, [React](../starters/react/README.md) for low-risk public browser clients, or [Django](../starters/django/README.md) for confidential Python servers. Review the [authoritative contract](integration-contract.md), [error guidance](error-guidance.md), and [production checklist](production-checklist.md) before launch.
+Choose a runnable, dependency-pinned reference: [Node/Express](../starters/express/README.md) for confidential JavaScript servers, [React](../starters/react/README.md) for low-risk public browser clients, [Django](../starters/django/README.md) for confidential Python servers, or [React + TypeScript + Django](../starters/react-typescript-django/README.md) for a confidential full-stack application. Review the [authoritative contract](integration-contract.md), [error guidance](error-guidance.md), and [production checklist](production-checklist.md) before launch.
 
 ## Public and confidential flow
 

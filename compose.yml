@@ -63,5 +63,29 @@ services:
       retries: 12
       start_period: 10s
 
+  react-django:
+    profiles: [react-django]
+    build: ./starters/react-typescript-django
+    environment:
+      MYDATUM_ISSUER: ${MYDATUM_ISSUER:-https://auth.mydatum.ai}
+      MYDATUM_CLIENT_ID: ${REACT_DJANGO_MYDATUM_CLIENT_ID:-replace-with-partner-client-id}
+      MYDATUM_CLIENT_SECRET: ${REACT_DJANGO_MYDATUM_CLIENT_SECRET:-replace-with-partner-client-secret}
+      MYDATUM_REDIRECT_URI: ${REACT_DJANGO_MYDATUM_REDIRECT_URI:-http://127.0.0.1:8080/auth/callback}
+      MYDATUM_SCOPES: ${REACT_DJANGO_MYDATUM_SCOPES:-openid}
+      DJANGO_SECRET_KEY: ${REACT_DJANGO_SECRET_KEY:-replace-with-at-least-50-random-characters}
+      DJANGO_DEBUG: ${REACT_DJANGO_DEBUG:-true}
+      DJANGO_DB_PATH: /data/db.sqlite3
+    volumes:
+      - react-django-data:/data
+    ports:
+      - "127.0.0.1:${REACT_DJANGO_PORT:-8080}:8000"
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=2)"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 10s
+
 volumes:
   django-data:
+  react-django-data:

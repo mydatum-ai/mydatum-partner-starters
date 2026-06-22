@@ -21,7 +21,7 @@
     "sourceDirectory": "starters/react",
     "contract": ">=0.1.2",
     "releasedAt": "2026-06-20",
-    "checksumSha256": "4500902a281596f7467eccbc7b3f3866e4ad5f1815bebbdf7d257341b83c2185"
+    "checksumSha256": "3c9e1c9fc728e871fb14319891081e0079fcdfe18b7b66f68ae29c73b6bf37c4"
   },
   {
     "id": "node-express",
@@ -45,7 +45,7 @@
     "sourceDirectory": "starters/express",
     "contract": ">=0.1.2",
     "releasedAt": "2026-06-20",
-    "checksumSha256": "3b365647526f3246f3375a7a49ab770658d21c77f8f5b5fad3f83566bea615e2"
+    "checksumSha256": "d3d3c83a44d500c84a4d9765e70b71a07772eab595f768d8ffa8d0396494be3e"
   },
   {
     "id": "django-server",
@@ -69,6 +69,30 @@
     "sourceDirectory": "starters/django",
     "contract": ">=0.1.2",
     "releasedAt": "2026-06-20",
-    "checksumSha256": "db5241a96ba3a5a1c2f6706604081b623624a05167c7b8613a8145b857acfbb7"
+    "checksumSha256": "817d9505b507a5f7417527e3339ee8a7e4a5046a449222054fcceebe84abdef2"
+  },
+  {
+    "id": "react-typescript-django",
+    "name": "React, TypeScript, and Django",
+    "framework": "React + Vite + Django",
+    "language": "TypeScript + Python",
+    "version": "1.0.0",
+    "status": "supported",
+    "clientType": "confidential",
+    "riskGuidance": "Recommended for React applications that use Django as a backend-for-frontend and keep OAuth credentials server-side.",
+    "callbackPath": "/auth/callback",
+    "defaultPort": 8080,
+    "loginPath": "/login",
+    "prerequisites": ["Node.js 20.19 or newer", "Python 3.11 or newer", "A provisioned confidential client", "A server-side secret manager and durable session store"],
+    "commands": ["cd frontend && npm ci && npm test", "cd backend && python -m pip install -r requirements.txt", "cd backend && python manage.py test"],
+    "capabilities": ["React 19 user interface written in TypeScript", "Django backend-for-frontend", "Authorization Code + PKCE S256", "Server-held tokens and client secret", "Secure same-origin application session"],
+    "limitations": ["SQLite and the included database session setup are for local development", "Local logout does not end the upstream MyDatum session"],
+    "sourceUrl": "https://github.com/mydatum-ai/mydatum-partner-starters/tree/main/starters/react-typescript-django",
+    "documentationUrl": "https://github.com/mydatum-ai/mydatum-partner-starters/blob/main/starters/react-typescript-django/README.md",
+    "releaseUrl": "https://github.com/mydatum-ai/mydatum-partner-starters/releases",
+    "sourceDirectory": "starters/react-typescript-django",
+    "contract": ">=0.1.2",
+    "releasedAt": "2026-06-22",
+    "checksumSha256": "60e3de220560da8535b8532d1b29224062549039bed877eba6a3ccd6c21b376c"
   }
 ]

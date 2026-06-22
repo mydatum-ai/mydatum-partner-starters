@@ -29,7 +29,7 @@ function checksum(directory) {
   return digest.digest("hex");
 }
 
-assert.equal(catalogue.length, 3, "The supported starter catalogue must contain three entries");
+assert.equal(catalogue.length, 4, "The supported starter catalogue must contain four entries");
 assert.equal(new Set(catalogue.map((item) => item.id)).size, catalogue.length, "Starter IDs must be unique");
 for (const item of catalogue) {
   assert.match(item.id, /^[a-z0-9-]+$/);

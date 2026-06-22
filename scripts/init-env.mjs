@@ -17,6 +17,6 @@ await copyFile(resolve(root, ".env.example"), target);
 let contents = await readFile(target, "utf8");
 contents = contents
   .replace("replace-with-at-least-32-random-characters", randomBytes(32).toString("base64url"))
-  .replace("replace-with-at-least-50-random-characters", randomBytes(48).toString("base64url"));
+  .replaceAll("replace-with-at-least-50-random-characters", () => randomBytes(48).toString("base64url"));
 await writeFile(target, contents);
 console.log("Created .env with random local session secrets. Add your MyDatum client credentials.");

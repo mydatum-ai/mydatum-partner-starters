@@ -21,7 +21,7 @@ jobs:
       - name: Create immutable source archives
         run: |
           mkdir -p partner-starter-artifacts
-          for entry in "react-public:starters/react" "node-express:starters/express" "django-server:starters/django"; do
+          for entry in "react-public:starters/react" "node-express:starters/express" "django-server:starters/django" "react-typescript-django:starters/react-typescript-django"; do
             starter="${entry%%:*}"
             directory="${entry#*:}"
             git archive --format=tar.gz --prefix="mydatum-$starter/" -o "partner-starter-artifacts/mydatum-$starter.tar.gz" "HEAD:$directory"

@@ -24,6 +24,7 @@ type that matches the code you intend to run:
 | React or another browser-only application | Public client with PKCE; no secret | [`starters/react`](../starters/react/) |
 | Node.js server or backend-for-frontend | Confidential client with PKCE | [`starters/express`](../starters/express/) |
 | Python server application | Confidential client with PKCE | [`starters/django`](../starters/django/) |
+| React + TypeScript with Django backend | Confidential client with PKCE | [`starters/react-typescript-django`](../starters/react-typescript-django/) |
 
 Add the exact local callback used by your project. Scheme, host, port, path, and trailing slash must
 match exactly. For example:
@@ -64,7 +65,7 @@ cd my-partner-app
 git init
 ```
 
-Replace `react` with `express` or `django` when appropriate. Each directory is a self-contained
+Replace `react` with `express`, `django`, or `react-typescript-django` when appropriate. Each directory is a self-contained
 runnable application and does not depend on the parent repository layout. When distributing a
 derived starter, retain the Apache-2.0 license and applicable notice from this repository. Do not copy
 the original repository's `.git` directory into your application repository.

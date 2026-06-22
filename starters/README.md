@@ -9,6 +9,7 @@ folder renaming or source rearrangement is required.
 | [`react`](react/) | React + Vite | Public client with PKCE S256 |
 | [`express`](express/) | Node.js + Express | Confidential client with PKCE S256 |
 | [`django`](django/) | Python + Django | Confidential client with PKCE S256 |
+| [`react-typescript-django`](react-typescript-django/) | React + TypeScript + Django | Confidential backend-for-frontend with PKCE S256 |
 
 The repository-root Compose workflow is for evaluating these applications together. After copying a
 single starter, use its README and Dockerfile as the application-level source of truth.

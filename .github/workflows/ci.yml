@@ -38,11 +38,24 @@ jobs:
           npm run lint
           npm test
           npm run start:check
+      - name: Verify React TypeScript Django frontend
+        working-directory: starters/react-typescript-django/frontend
+        run: |
+          npm ci
+          npm run lint
+          npm test
+          npm run build
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - name: Verify Django starter
         working-directory: starters/django
+        run: |
+          python -m pip install -r requirements.txt
+          python manage.py check
+          python manage.py test
+      - name: Verify React TypeScript Django backend
+        working-directory: starters/react-typescript-django/backend
         run: |
           python -m pip install -r requirements.txt
           python manage.py check
@@ -58,6 +71,9 @@ jobs:
           DJANGO_MYDATUM_CLIENT_ID: ci-django-client
           DJANGO_MYDATUM_CLIENT_SECRET: ci-django-client-secret
           DJANGO_SECRET_KEY: ci-django-secret-key-that-is-definitely-at-least-fifty-characters-long
+          REACT_DJANGO_MYDATUM_CLIENT_ID: ci-react-django-client
+          REACT_DJANGO_MYDATUM_CLIENT_SECRET: ci-react-django-client-secret
+          REACT_DJANGO_SECRET_KEY: ci-react-django-secret-key-that-is-definitely-at-least-fifty-characters-long
         run: |
           docker compose config --quiet
-          node scripts/compose-smoke.mjs react node django
+          node scripts/compose-smoke.mjs react node django react-django
